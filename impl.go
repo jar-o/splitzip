@@ -24,14 +24,14 @@ func (f ByLargest) Swap(i, j int) { f[i], f[j] = f[j], f[i] }
 func (f ByLargest) Less(i, j int) bool { return f[i].Size > f[j].Size }
 
 /*
-	'overage' is the amount over 'maxSize' that is allowed, and basically is a
+	'savings' is the amount over 'maxSize' that is allowed, and basically is a
 	statement about expected compression ratio. E.g. you may expect an average
 	10% space savings for the corpus you're processing. In that case, set it to
 	0.10. If you're unsure, just leave it at 0
 */
-func groupBySize(files []FileSize, maxSize int64, overage float64) ([][]string, error) {
+func groupBySize(files []FileSize, maxSize int64, savings float64) ([][]string, error) {
 	var ret [][]string
-	maxSize = maxSize + int64(float64(maxSize)*overage)
+	maxSize = maxSize + int64(float64(maxSize)*savings)
 
 	sort.Sort(ByLargest(files))
 	for i, e := range files {
@@ -130,11 +130,11 @@ func splitZip(groupedFiles [][]string, outpath string, prefix string) error {
 	return nil
 }
 
-func Zip(inpath string, outpath string, prefix string, maxSize int64, overage float64) error {
+func Zip(inpath string, outpath string, prefix string, maxSize int64, savings float64) error {
 	f, err := loadFiles(inpath)
 	if err != nil { return err }
 
-	g, err := groupBySize(f, maxSize, overage)
+	g, err := groupBySize(f, maxSize, savings)
 	if err != nil { return err }
 
 	return splitZip(g, outpath, prefix)
