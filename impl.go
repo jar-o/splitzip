@@ -31,12 +31,12 @@ func (f ByLargest) Less(i, j int) bool { return f[i].Size > f[j].Size }
 */
 func groupBySize(files []FileSize, maxSize int64, savings float64) ([][]string, error) {
 	var ret [][]string
+	// We adjust this to account for the expected space savings, if any.
 	maxSize = maxSize + int64(float64(maxSize)*savings)
 
 	sort.Sort(ByLargest(files))
 	for i, e := range files {
 			if e.Size == -1 { continue }
-			// TODO a reasonable percentage over required size, maybe?
 			if e.Size > maxSize {
 				return ret, errors.New("Single file is too large to meet requirements.")
 			}
