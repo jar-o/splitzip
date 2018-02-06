@@ -24,10 +24,10 @@ func (f ByLargest) Swap(i, j int) { f[i], f[j] = f[j], f[i] }
 func (f ByLargest) Less(i, j int) bool { return f[i].Size > f[j].Size }
 
 /*
-	'savings' a guesstimate about the expected space saving. E.g. you may expect
-	an average 10% space savings for the corpus you're processing. In that case,
-	set it to 0.10. If you're unsure, or if you have a wide variety of file types,
-	just leave it at 0.
+	'savings' is a guesstimate about the expected space saving. E.g. you may
+	expect an average 10% space savings for the corpus you're processing. In
+	that case, set it to 0.10. If you're unsure, or if you have a wide variety
+	of file types, just leave it at 0.
 */
 func groupBySize(files []FileSize, maxSize int64, savings float64) ([][]string, error) {
 	var ret [][]string
