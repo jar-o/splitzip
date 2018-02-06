@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	p "path"
 	"sort"
-    "archive/zip"
-    "io"
-    "os"
+	"archive/zip"
+	"io"
+	"os"
 )
 
 type FileSize struct {
