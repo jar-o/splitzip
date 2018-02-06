@@ -29,7 +29,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/splitzip"
+	"github.com/jar-o/splitzip"
 )
 
 func main() {
