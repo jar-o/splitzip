@@ -1,15 +1,15 @@
 package splitzip
 
 import (
+	"archive/zip"
 	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 	p "path"
 	"sort"
-	"archive/zip"
-	"io"
-	"os"
 )
 
 type FileSize struct {
