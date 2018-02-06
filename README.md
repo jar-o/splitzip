@@ -51,4 +51,4 @@ sources/zip/test4.zip	3778674
 The final parameter `.4` in the call to `splitzip.Zip()` above is the expected
 space savings for this set of files. Because the density of files will vary, and
 hence their compressibility, you can use this number to optimize for your set of
-file types.
+file types. If you're not certain, just leave it as `0`.
